@@ -21,6 +21,21 @@ public class DataBase
     {
         SceneManager.LoadScene(Name);
     }
+    private int indexOfcurrentShip()
+    {
+        for (int i = 0; i < DataBase.instance.playerShipsInfo.Length; i++)
+        {
+            if (DataBase.instance.playerShipsInfo[i][0] == 1)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+    public int playerShipInfo(Specifications specification)
+    {
+        return playerShipsInfo[indexOfcurrentShip()][Constants.IndexOfSpecificationsInDataBase + (int)specification];
+    }
     public void SaveGame()
     {
         Score += Score_Game;

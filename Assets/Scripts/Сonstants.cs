@@ -8,6 +8,12 @@ public enum Specifications
     Speed,
     Shield
 }
+public enum TypesOfGun
+{
+    Cental,
+    Side,
+    All
+}
 public class Constants// : MonoBehaviour
 {
     public const int IndexOfSpecificationsInDataBase = 2;
