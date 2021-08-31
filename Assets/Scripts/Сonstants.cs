@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum Specifications
@@ -10,18 +11,23 @@ public enum Specifications
 }
 public enum TypesOfGun
 {
-    Cental,
+    Central,
     Side,
     All
+}
+public enum ConflictSides
+{
+    Enemy,
+    Player
 }
 public class Constants// : MonoBehaviour
 {
     public const int IndexOfSpecificationsInDataBase = 2;
-    public static List<Specifications> AllSpecifications
+    public static IEnumerable<Specifications> AllSpecifications
     {
         get
         {
-            return new List<Specifications> { Specifications.HP, Specifications.Speed, Specifications.Shield };
+            return (IEnumerable<Specifications>)System.Enum.GetValues(typeof(Specifications));// new List<Specifications> { Specifications.HP, Specifications.Speed, Specifications.Shield };
         }
     }
     public static int GetMaxSpecificationValue(Specifications specification)

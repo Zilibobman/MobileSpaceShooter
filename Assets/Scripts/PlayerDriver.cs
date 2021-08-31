@@ -30,9 +30,9 @@ public class PlayerDriver : MonoBehaviour, IDriver<Vector2>
 
     public void GoTo(Vector2 destination)
     {
-        transform.position = Vector2.MoveTowards(transform.position, destination, speed * Time.deltaTime);
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, borders.minX, borders.maxX),
-                                Mathf.Clamp(transform.position.y, borders.minY, borders.maxY));
+        ship.transform.position = Vector2.MoveTowards(ship.transform.position, destination, speed * Time.deltaTime);
+        ship.transform.position = new Vector2(Mathf.Clamp(ship.transform.position.x, borders.minX, borders.maxX),
+                                Mathf.Clamp(ship.transform.position.y, borders.minY, borders.maxY));
     }
 
     private void Awake()

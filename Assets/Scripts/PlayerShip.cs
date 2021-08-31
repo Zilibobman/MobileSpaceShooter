@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
+public class PlayerShip : MonoBehaviour, IPlayerShip<Vector2,Vector2>
 {
+    private Slider slider;
     public int currentHP = 0;
-    public int CurrentHP => currentHP;
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
     public int maxHP = 0;
-    public int MaxHP => maxHP;
-
+    public int MaxHP { get => maxHP; set => maxHP = value; }
+    public GameObject obj_Driver;
     public IDriver<Vector2> driver;
 
     public event EventHandler ShipWasDestroy;
@@ -18,10 +20,11 @@ public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
 
     public GameObject CentralGun;
     public List<GameObject> SideGuns;
-    public TypesOfGun rageOfFire = TypesOfGun.Cental;
+    public TypesOfGun rageOfFire = TypesOfGun.Central;
     public TypesOfGun RageOfFire => rageOfFire;
 
-    public TypesOfGun RateOfFire { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public ConflictSides conflictSide;
+    public ConflictSides ConflictSide => conflictSide;
 
     public void GetDamage(int damage)
     {
@@ -50,11 +53,22 @@ public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
     {
         Driver.GoTo(Trjectory);
     }
+    public void Awake()
+    {
+        driver = obj_Driver.GetComponent<IDriver<Vector2>>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        slider = GameObject.FindGameObjectWithTag("sl_HP").GetComponent<Slider>();
+        slider.maxValue = Constants.GetMaxSpecificationValue(Specifications.HP);
+        changeSliderValue();
+        SetRageOfFire(rageOfFire);
+    }
+    private void changeSliderValue()
+    {
+        slider.value = currentHP;
     }
 
     // Update is called once per frame
@@ -62,7 +76,9 @@ public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
     {
         if (Input.GetMouseButton(0))
         {
-            GoTo(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            Vector3 dislocate = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dislocate.y += 1.5f;
+            GoTo(dislocate);
         }
     }
     private void Destruction()
@@ -77,11 +93,11 @@ public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
         SetRageOfFire(rageOfFire);
     }
 
-    public void UpRateOfFire()
+    public void UpRageOfFire()
     {
         switch (rageOfFire)
         {
-            case TypesOfGun.Cental:
+            case TypesOfGun.Central:
                 rageOfFire = TypesOfGun.Side;
                 break;
             case TypesOfGun.Side:
@@ -99,7 +115,7 @@ public class PlayerShip : MonoBehaviour,IPlayerShip<Vector2,Vector2>
                 foreach (var gun in SideGuns)
                     gun.SetActive(true);
                 break;
-            case TypesOfGun.Cental:
+            case TypesOfGun.Central:
                 CentralGun.SetActive(true);
                 foreach (var gun in SideGuns)
                     gun.SetActive(false);

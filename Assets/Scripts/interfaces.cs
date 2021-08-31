@@ -25,6 +25,14 @@ public interface IHaveMaxSpeed
 {
     public int MaxSpeed { get; }
 }
+public interface IHaveConflictSide
+{
+    public ConflictSides ConflictSide { get; }
+}
+public interface IHaveConflictSideAndDamageble: IHaveConflictSide,IDamagable
+{
+
+}
 public interface IDriver<DriverInput> : IHaveSpeed, IHaveMaxSpeed
 {
     public Transform Ship { get; }
@@ -42,11 +50,16 @@ public interface IDamager
 {
     public void Hurt(IDamagable victim);
 }
-public interface IShield : IDamagable, IHaveHP, IHeallable
+public interface IShield : IDamagable, IHaveHP, IHeallable, IHaveConflictSideAndDamageble
 {
 
 }
-public interface IBullet : IHaveSpeed, IDamager
+public interface IMainPlayerShield : IShield 
+{
+    public new  int CurrentHP { get; set; }
+    public new int MaxHP { get; set; }
+}
+public interface IBullet : IHaveSpeed, IDamager, IHaveConflictSide
 {
     public int Damage{get; set;}
     public new int Speed { get; set; }
@@ -55,6 +68,9 @@ public interface IGun
 {
     public TypesOfGun TypeOfGun { get; }
     public float Time_Bullet_Spawn { get; set; }
+    public IMakeAShot Shoter { get; set; }
+    public List<IBulletModifyer> Modifiers { get; set; }
+    public ParticleSystem Particle{get;set;}
 }
 public interface IBulletModifyer
 {
@@ -76,19 +92,18 @@ public interface IHaveDiferentRagesOfFire
 {
     public TypesOfGun RageOfFire { get;}
     public void ChangeRageOfFire(TypesOfGun RageOfFire);
-    public void UpRateOfFire();
+    public void UpRageOfFire();
 }
-public interface IShip<DriverInput, MoovingBy> : IDamagable, IHaveHP, IHaveDriver<DriverInput>, IMoovingByTrjectory<MoovingBy>
+public interface IShip<DriverInput, MoovingBy> : IDamagable, IHaveHP, IHaveConflictSideAndDamageble, IHaveDriver<DriverInput>, IMoovingByTrjectory<MoovingBy>
 {
     public event EventHandler ShipWasDestroy;
 }
 public interface IPlayerShip<DriverInput, MoovingBy> : IShip<DriverInput, MoovingBy>, IHeallable, IHaveDiferentRagesOfFire
 {
-
-    public TypesOfGun RateOfFire { get; set; }
+    public new int CurrentHP { get; set; }
+    public new int MaxHP { get; set; }
 }
 public interface IMainPlayer
 {
-    public IShip<Vector2, Vector2> Ship { get; }
-    public IShield Shield { get; }
+    public IPlayerShip<Vector2, Vector2> Ship { get; }
 }

@@ -34,14 +34,7 @@ public class LevelController : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1;
-        for (int i = 0; i < DataBase.instance.playerShipsInfo.Length; i++)
-        {
-            if (DataBase.instance.playerShipsInfo[i][0] == 1)
-            {
-                LoadPlayer(i);
-                break;
-            }
-        }
+        LoadPlayer();
         for (int i = 0; i < enemyWaves.Length; i++)
         {
             StartCoroutine(CreateEnemyWave(enemyWaves[i].timeToStart, enemyWaves[i].wave, enemyWaves[i].is_Last_Wave));
@@ -66,12 +59,12 @@ public class LevelController : MonoBehaviour
         DataBase.instance.Score_Game += score;
         text_Score.text = "Score: " + DataBase.instance.Score_Game.ToString();
     }
-    public void LoadPlayer(int ship)
+    public void LoadPlayer()
     {
-        Instantiate(playerShip[ship]);
-        Player.instanse.player_Health = DataBase.instance.playerShipsInfo[ship][(int)Specifications.HP + Constants.IndexOfSpecificationsInDataBase];
-        PlayerMoving.instance.speed_Player = DataBase.instance.playerShipsInfo[ship][(int)Specifications.Speed + Constants.IndexOfSpecificationsInDataBase];
-        Player.instanse.shield_Health = DataBase.instance.playerShipsInfo[ship][(int)Specifications.Shield + Constants.IndexOfSpecificationsInDataBase];
+        Instantiate(playerShip[DataBase.instance.indexOfcurrentShip()]);
+        Player.instanse.Ship.CurrentHP = Player.instanse.Ship.MaxHP = DataBase.instance.playerShipInfo(Specifications.HP);
+        ((PlayerDriver)Player.instanse.Ship.Driver).speed = ((PlayerDriver)Player.instanse.Ship.Driver).maxSpeed = DataBase.instance.playerShipInfo(Specifications.Speed);
+        Player.instanse.shield.CurrentHP = Player.instanse.shield.MaxHP = DataBase.instance.playerShipInfo(Specifications.Shield);
     }
     public void GamePause()
     {

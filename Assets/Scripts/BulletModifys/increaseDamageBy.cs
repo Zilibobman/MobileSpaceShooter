@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class increaseDamageBy : IBulletModifyer
+public class increaseDamageBy : MonoBehaviour, IBulletModifyer
 {
     public int BonusDamage = 0;
 

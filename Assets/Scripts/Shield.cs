@@ -9,6 +9,8 @@ public class Shield : MonoBehaviour, IShield
 
     public int maxHP = 0;
     public int MaxHP => maxHP;
+    public ConflictSides conflictSide;
+    public ConflictSides ConflictSide => conflictSide;
 
     // Start is called before the first frame update
     void Start()

@@ -21,7 +21,7 @@ public class DataBase
     {
         SceneManager.LoadScene(Name);
     }
-    private int indexOfcurrentShip()
+    public int indexOfcurrentShip()
     {
         for (int i = 0; i < DataBase.instance.playerShipsInfo.Length; i++)
         {

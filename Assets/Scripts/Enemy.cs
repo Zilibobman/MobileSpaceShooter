@@ -71,15 +71,13 @@ public class Enemy : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.tag == "Player_Ship")
+        if (coll.gameObject.TryGetComponent(out IHaveConflictSideAndDamageble collConflictSide))
         {
-            Player.instanse.GetDamage(1);
-            GetDamage(1);
-        }
-        if (coll.tag == "Shield")
-        {
-            Player.instanse.GetDamageShield(1);
-            GetDamage(1);
+            if (collConflictSide.ConflictSide != ConflictSides.Enemy)
+            {
+                collConflictSide.GetDamage(1);
+                GetDamage(1);
+            }
         }
     }
 }

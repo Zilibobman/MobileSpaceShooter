@@ -4,16 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IMainPlayer
 {
     public static Player instanse = null;
 
-    public int player_Health = 10;
-
     public GameObject obj_Shield;
-    public int shield_Health;
-    private UnityEngine.UI.Slider _slider_hp_Player;
-    private UnityEngine.UI.Slider _slider_hp_Shield;
+    public IMainPlayerShield shield;
+    public GameObject obj_Ship;
+    private IPlayerShip<Vector2, Vector2> ship;
+    public IPlayerShip<Vector2, Vector2> Ship => ship;
 
     private void Awake()
     {
@@ -22,44 +21,17 @@ public class Player : MonoBehaviour
         else
             Destroy(gameObject);
 
-
-        _slider_hp_Player = GameObject.FindGameObjectWithTag("sl_HP").GetComponent<Slider>();
-        _slider_hp_Shield = GameObject.FindGameObjectWithTag("sl_Shield").GetComponent<Slider>();
+        shield = obj_Shield.GetComponent<IMainPlayerShield>();
+        ship = obj_Ship.GetComponent<IPlayerShip<Vector2, Vector2>>();
+        ship.ShipWasDestroy += ifShipDestroy;
     }
     private void Start()
     {
 
-        _slider_hp_Player.value = (float)player_Health / Constants.GetMaxSpecificationValue(Specifications.HP);
-        if (shield_Health > 0)
-        {
-            obj_Shield.SetActive(true);
-            _slider_hp_Shield.value = (float)shield_Health / Constants.GetMaxSpecificationValue(Specifications.Shield);
-        }
-        else
-        {
-            obj_Shield.SetActive(false);
-            _slider_hp_Shield.value = 0;
-        }
     }
-
-    public void GetDamageShield(int damage)
+    private void ifShipDestroy(object sender, System.EventArgs e) 
     {
-        shield_Health -= damage;
-        _slider_hp_Shield.value = (float)shield_Health / Constants.GetMaxSpecificationValue(Specifications.Shield);
-        if(shield_Health <= 0)
-        {
-            obj_Shield.SetActive(false);
-        }
-    }
-
-    public void GetDamage(int damage)
-    {
-        player_Health -= damage;
-        _slider_hp_Player.value = (float)player_Health / Constants.GetMaxSpecificationValue(Specifications.HP);
-        if (player_Health <= 0)
-        {
-            Destruction();
-        }
+        Destruction();
     }
     private void Destruction()
     {

@@ -2,30 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IBullet
 {
     public int damage;
-    public bool is_Enemy_Bullet;
+
+    public int Damage { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+    public int Speed { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    public ConflictSides conflictSide;
+    public ConflictSides ConflictSide => conflictSide;
+
+    public void Hurt(IDamagable victim)
+    {
+        victim.GetDamage(damage);
+    }
+
     private void Destruction()
     {
         Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if(is_Enemy_Bullet && coll.tag == "Player_Ship")
+        if(coll.gameObject.TryGetComponent(out IHaveConflictSideAndDamageble collConflictSide))
         {
-            Player.instanse.GetDamage(damage);
-            Destruction();
+            if(collConflictSide.ConflictSide != conflictSide)
+            {
+                Hurt(collConflictSide);
+                Destruction();
+            }
         }
-        else if(!is_Enemy_Bullet && coll.tag == "Enemy")
-        {
-            coll.GetComponent<Enemy>().GetDamage(damage);
-            Destruction();
-        }
-        else if(is_Enemy_Bullet && coll.tag == "Shield")
-        {
-            Player.instanse.GetDamageShield(damage);
-            Destruction();
-        }
+
     }
 }

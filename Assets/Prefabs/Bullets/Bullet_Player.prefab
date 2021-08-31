@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  is_Enemy_Bullet: 0
+  conflictSide: 1
 --- !u!114 &6664044043348184987
 MonoBehaviour:
   m_ObjectHideFlags: 0
