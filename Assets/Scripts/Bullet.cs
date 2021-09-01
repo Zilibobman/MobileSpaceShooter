@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour, IBullet
     }
     private void OnTriggerEnter2D(Collider2D coll)
     {
-        if(coll.gameObject.TryGetComponent(out IHaveConflictSideAndDamageble collConflictSide))
+        if((coll.tag.Contains("Player") || coll.tag.Contains("Enemy")) && coll.gameObject.TryGetComponent(out IHaveConflictSideAndDamageble collConflictSide))
         {
             if(collConflictSide.ConflictSide != conflictSide)
             {

@@ -4,15 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class Player : MonoBehaviour, IMainPlayer
+public class Player : AbstructParticipant<MainPlayerShip, DriverGoToVector2, Vector2, MainPlayerShield>
 {
     public static Player instanse = null;
-
-    public GameObject obj_Shield;
-    public IMainPlayerShield shield;
-    public GameObject obj_Ship;
-    private IPlayerShip<Vector2, Vector2> ship;
-    public IPlayerShip<Vector2, Vector2> Ship => ship;
 
     private void Awake()
     {
@@ -21,20 +15,11 @@ public class Player : MonoBehaviour, IMainPlayer
         else
             Destroy(gameObject);
 
-        shield = obj_Shield.GetComponent<IMainPlayerShield>();
-        ship = obj_Ship.GetComponent<IPlayerShip<Vector2, Vector2>>();
+        ship = obj_Ship.GetComponent<MainPlayerShip>();
         ship.ShipWasDestroy += ifShipDestroy;
     }
     private void Start()
     {
 
-    }
-    private void ifShipDestroy(object sender, System.EventArgs e) 
-    {
-        Destruction();
-    }
-    private void Destruction()
-    {
-        Destroy(gameObject);
     }
 }

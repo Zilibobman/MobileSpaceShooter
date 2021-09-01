@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPlayerShield : MonoBehaviour, IMainPlayerShield
+public class MainPlayerShield : MonoBehaviour, IShield
 {
     private Slider slider;
 
     public int currentHP = 0;
-    public int CurrentHP { get => currentHP; set => currentHP = value; }
+    public int CurrentHP { get => currentHP;}
 
     public int maxHP = 0;
-    public int MaxHP { get => maxHP; set => maxHP = value; }
+    public int MaxHP { get => maxHP;}
     public ConflictSides ConflictSide => ConflictSides.Player;
 
     public void GetDamage(int damage)

@@ -62,9 +62,9 @@ public class LevelController : MonoBehaviour
     public void LoadPlayer()
     {
         Instantiate(playerShip[DataBase.instance.indexOfcurrentShip()]);
-        Player.instanse.Ship.CurrentHP = Player.instanse.Ship.MaxHP = DataBase.instance.playerShipInfo(Specifications.HP);
-        ((PlayerDriver)Player.instanse.Ship.Driver).speed = ((PlayerDriver)Player.instanse.Ship.Driver).maxSpeed = DataBase.instance.playerShipInfo(Specifications.Speed);
-        Player.instanse.shield.CurrentHP = Player.instanse.shield.MaxHP = DataBase.instance.playerShipInfo(Specifications.Shield);
+        Player.instanse.Ship.currentHP = Player.instanse.Ship.maxHP = DataBase.instance.playerShipInfo(Specifications.HP);
+        Player.instanse.Ship.driver.speed = Player.instanse.Ship.driver.maxSpeed = DataBase.instance.playerShipInfo(Specifications.Speed);
+        Player.instanse.Ship.shield.currentHP = Player.instanse.Ship.shield.maxHP = DataBase.instance.playerShipInfo(Specifications.Shield);
     }
     public void GamePause()
     {
