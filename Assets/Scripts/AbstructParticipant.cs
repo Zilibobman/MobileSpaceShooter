@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstructParticipant<ShipType, DriverType, DriverInput, ShieldType> : MonoBehaviour 
-    where DriverType : IDriver<DriverInput>
-    where ShieldType : IShield
-    where ShipType : AbstructShip<DriverType, DriverInput, ShieldType>
+public abstract class AbstructParticipant : MonoBehaviour, IHaveShip
 {
     public GameObject obj_Ship;
-    protected ShipType ship;
-    public IShip<IDriver<DriverInput>, IShield> Ship => ship;
+    [HideInInspector]
+    public AbstructShip ship;
+    public IShip Ship { get => ship; }
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        ship = obj_Ship.GetComponent<ShipType>();
+        ship = obj_Ship.GetComponent<AbstructShip>();
         ship.ShipWasDestroy += ifShipDestroy;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         
     }

@@ -10,7 +10,7 @@ public abstract class AbstructPilot<DriverInput> : MonoBehaviour, IPilot<DriverI
 
     protected virtual void Start()
     {
-        driver = gameObject.GetComponent<IShip<IDriver<DriverInput>, IShield>>().Driver;
+        driver = gameObject.GetComponent<IShip>().Driver as IDriver<DriverInput>;
     }
     protected virtual void Update()
     {

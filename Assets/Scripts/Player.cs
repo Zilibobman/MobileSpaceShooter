@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class Player : AbstructParticipant<MainPlayerShip, DriverGoToVector2, Vector2, MainPlayerShield>
+public class Player : AbstructParticipant
 {
     public static Player instanse = null;
 
@@ -14,12 +14,5 @@ public class Player : AbstructParticipant<MainPlayerShip, DriverGoToVector2, Vec
             instanse = this;
         else
             Destroy(gameObject);
-
-        ship = obj_Ship.GetComponent<MainPlayerShip>();
-        ship.ShipWasDestroy += ifShipDestroy;
-    }
-    private void Start()
-    {
-
     }
 }

@@ -68,6 +68,8 @@
     <Compile Include="Assets\Scripts\MainPlayerShip.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\Scripts\AbstructParticipant.cs" />
+    <Compile Include="Assets\Scripts\AbstructShip.cs" />
     <Compile Include="Assets\Scripts\ObjMoving.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\Сonstants.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\RepeatingBG.cs" />
     <Compile Include="Assets\Scripts\BulletModifys\increaseDamageBy.cs" />
+    <Compile Include="Assets\Scripts\AbstructDriver.cs" />
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\Bullet.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
@@ -120,9 +123,8 @@
     <Compile Include="Assets\Scripts\StandartEnemyPilot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
-    <Compile Include="Assets\Scripts\AbstructShip.cs" />
-    <Compile Include="Assets\Scripts\AbstructDriver.cs" />
-    <Compile Include="Assets\Scripts\AbstructParticipant.cs" />
+    <Compile Include="Assets\Scripts\AbstructBullet.cs" />
+    <Compile Include="Assets\Scripts\AbstructShield.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

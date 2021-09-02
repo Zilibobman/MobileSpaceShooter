@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPlayerShip : AbstructShip<DriverGoToVector2, Vector2, MainPlayerShield>, IHeallable, IHaveDiferentRagesOfFire, ICanChangeCentralGun, ICanChangeSideGun
+public class MainPlayerShip : AbstructShip, IHeallable, IHaveDiferentRagesOfFire, ICanChangeCentralGun, ICanChangeSideGun
 {
     private Slider slider;
 
@@ -15,6 +15,8 @@ public class MainPlayerShip : AbstructShip<DriverGoToVector2, Vector2, MainPlaye
 
     public TypesOfGun rageOfFire = TypesOfGun.Central;
     public TypesOfGun RageOfFire => rageOfFire;
+
+    public override ConflictSides ConflictSide => ConflictSides.Player;
 
     public void Heal(int HP)
     {

@@ -3,17 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShip : AbstructShip<IDriver<Vector2>, Vector2, IShield>
+public class EnemyShip : AbstructShip
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override ConflictSides ConflictSide => ConflictSides.Enemy;
 }

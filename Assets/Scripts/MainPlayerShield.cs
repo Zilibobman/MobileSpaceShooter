@@ -3,39 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainPlayerShield : MonoBehaviour, IShield
+public class MainPlayerShield : AbstructShield
 {
     private Slider slider;
 
-    public int currentHP = 0;
-    public int CurrentHP { get => currentHP;}
+    public override ConflictSides ConflictSide => ConflictSides.Player;
 
-    public int maxHP = 0;
-    public int MaxHP { get => maxHP;}
-    public ConflictSides ConflictSide => ConflictSides.Player;
-
-    public void GetDamage(int damage)
+    public override void GetDamage(int damage)
     {
-        currentHP -= damage;
-        if (currentHP <= 0)
-        {
-            currentHP = 0;
-            gameObject.SetActive(false);
-        }
+        base.GetDamage(damage);
         changeSliderValue();
     }
 
-    public void Heal(int HP)
+    public override void Heal(int HP)
     {
-        currentHP += HP;
-        if (currentHP > maxHP)
-        {
-            currentHP = maxHP;
-        }
-        if (!gameObject.activeSelf && currentHP > 0)
-        {
-            gameObject.SetActive(true);
-        }
+        base.Heal(HP);
         changeSliderValue();
     }
     private void changeSliderValue()
@@ -44,16 +26,11 @@ public class MainPlayerShield : MonoBehaviour, IShield
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         slider = GameObject.FindGameObjectWithTag("sl_Shield").GetComponent<Slider>();
         slider.maxValue = Constants.GetMaxSpecificationValue(Specifications.Shield);
         changeSliderValue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

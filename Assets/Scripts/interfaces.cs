@@ -11,11 +11,17 @@ public interface IDamagable
 public interface IHaveHP
 {
     public int CurrentHP { get; }
+}
+public interface IHaveMaxHP
+{
     public int MaxHP { get; }
 }
 public interface IControllebleHP : IHaveHP
 {
     public new int CurrentHP { get; set; }
+}
+public interface IControllebleMaxHP : IHaveMaxHP
+{
     public new int MaxHP { get; set; }
 }
 public interface IHeallable
@@ -37,10 +43,13 @@ public interface IHaveMaxSpeed
 {
     public int MaxSpeed { get; }
 }
-public interface IControllebleSpeed : IHaveSpeed, IHaveMaxSpeed
+public interface IControllebleSpeed : IHaveSpeed
 {
     public new int Speed { get; set; }
-    public new int MaxSpeed { get; set; }
+}
+public interface IControllebleMaxSpeed : IHaveMaxSpeed
+{
+    public new int MaxSpeed { get; }
 }
 public interface IDriver : IHaveSpeed, IHaveMaxSpeed
 {
@@ -62,24 +71,31 @@ public interface IHaveConflictSide
 {
     public ConflictSides ConflictSide { get; }
 }
-public interface IHaveConflictSideAndDamageble: IHaveConflictSide,IDamagable
+public interface IHaveConflictSideAndDamageble: IHaveConflictSide, IDamagable
 {
 
 }
 #endregion
 
 #region Shield
-public interface IShield : IDamagable, IHaveHP, IHeallable, IHaveConflictSideAndDamageble
+public interface IShield : IDamagable, IHaveHP, IHaveMaxHP, IHeallable, IHaveConflictSideAndDamageble
 {
 
 }
 #endregion
 
 #region Guns and Bullets
-public interface IBullet : IHaveSpeed, IDamager, IHaveConflictSide
+public interface IHaveDamage
 {
-    public int Damage{get; set;}
-    public new int Speed { get; set; }
+    public int Damage { get; }
+}
+public interface IHaveControllableDamage : IHaveDamage
+{
+    public new int Damage { get; set; }
+}
+public interface IBullet : IHaveSpeed, IDamager, IHaveConflictSide, IHaveDamage
+{
+
 }
 public interface IGun
 {
@@ -90,15 +106,15 @@ public interface IGun
 }
 public interface IAutoGun : IGun
 {
-    public float Time_Bullet_Spawn { get; set; }
+    public float Time_Bullet_Spawn { get;}
 }
 public interface IMayBeShotGun : IGun
 {
     public int Shot_Chance { get; set; }
 }
-    public interface IBulletModifyer
+public interface IBulletModifyer
 {
-    public void Modify(IBullet bullet);
+    public void Modify(AbstructBullet bullet);
 }
 public interface IMakeAShot
 {
@@ -115,10 +131,10 @@ public interface IPilotByTrajectory<DriverInput, TrajectoryType> : IPilot<Driver
 {
     public TrajectoryType Trajectory { get; set; }
 }
-public interface IShip<DriverType, ShieldType> : IHaveHP, IHaveConflictSideAndDamageble where DriverType : IDriver where ShieldType : IShield
+public interface IShip : IHaveHP, IHaveMaxHP, IHaveConflictSideAndDamageble
 {
-    public ShieldType Shield {get;}
-    public DriverType Driver { get; }
+    public IShield Shield {get;}
+    public IDriver Driver { get; }
     public event EventHandler ShipWasDestroy;
 }
 public interface ICanChangeCentralGun
@@ -136,5 +152,16 @@ public interface IHaveDiferentRagesOfFire
     public TypesOfGun RageOfFire { get; }
     public void ChangeRageOfFire(TypesOfGun RageOfFire);
     public void UpRageOfFire();
+}
+#endregion
+
+#region Participant
+public interface IHaveShip
+{
+    public IShip Ship {get;}
+}
+public interface IParticipant : IHaveShip
+{
+
 }
 #endregion

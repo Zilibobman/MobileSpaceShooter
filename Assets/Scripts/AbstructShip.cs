@@ -3,26 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbstructShip<DriverType, DriverInput, ShieldType> : MonoBehaviour, IShip<IDriver<DriverInput>, IShield> 
-    where DriverType : IDriver<DriverInput> 
-    where ShieldType : IShield
+public abstract class AbstructShip : MonoBehaviour, IShip, IControllebleHP, IControllebleMaxHP
 {
     public GameObject obj_Driver;
     [HideInInspector]
-    public DriverType driver;
-    public IDriver<DriverInput> Driver => driver;
+    public AbstructDriver driver;
+    public IDriver Driver => driver;
     public GameObject obj_Shield;
     [HideInInspector]
-    public ShieldType shield;
+    public AbstructShield shield;
     public IShield Shield { get => shield; }
-    public int currentHP = 0;
-    public int CurrentHP { get => currentHP; }
+    protected int currentHP = 0;
+    public int CurrentHP { get => currentHP; set => currentHP = value; }
 
-    public int maxHP = 0;
-    public int MaxHP { get => maxHP; }
-
-    public ConflictSides conflictSide;
-    public ConflictSides ConflictSide => conflictSide;
+    protected int maxHP = 0;
+    public int MaxHP { get => maxHP; set => maxHP = value; }
+    public abstract ConflictSides ConflictSide { get; }
 
     public event EventHandler ShipWasDestroy;
 
@@ -37,7 +33,7 @@ public class AbstructShip<DriverType, DriverInput, ShieldType> : MonoBehaviour, 
     }
     public virtual void Awake()
     {
-        driver = obj_Driver.GetComponent<DriverType>();
+        driver = obj_Driver.GetComponent<AbstructDriver>();
         obj_Shield?.TryGetComponent(out shield);
     }
     // Start is called before the first frame update
@@ -62,10 +58,10 @@ public class AbstructShip<DriverType, DriverInput, ShieldType> : MonoBehaviour, 
     {
         if ((coll.tag.Contains("Player") || coll.tag.Contains("Enemy")) && coll.gameObject.TryGetComponent(out IHaveConflictSideAndDamageble collConflictSide))
         {
-            if (collConflictSide.ConflictSide != conflictSide)
+            if (collConflictSide.ConflictSide != ConflictSide)
             {
-                collConflictSide.GetDamage(1);
-                GetDamage(1);
+                collConflictSide.GetDamage(Constants.CollisionDamage);
+                GetDamage(Constants.CollisionDamage);
             }
         }
     }

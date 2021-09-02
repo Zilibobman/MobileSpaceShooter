@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9096913929130062808}
   - component: {fileID: 7785031409073528779}
-  - component: {fileID: 6664044043348184987}
   - component: {fileID: 5809373403296088011}
   - component: {fileID: 3488564707913736671}
   - component: {fileID: 8632500828618410513}
@@ -47,21 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e891d3d7c70784d9a190c90564bd30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  is_Enemy_Bullet: 0
---- !u!114 &6664044043348184987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4122734396617966289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c508b3f4ab4764d8face2b577fd342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 20
+  conflictSide: 0
 --- !u!212 &5809373403296088011
 SpriteRenderer:
   m_ObjectHideFlags: 0

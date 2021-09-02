@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstructDriver<DriverInput> : MonoBehaviour, IDriver<DriverInput>
+public abstract class AbstructDriver<DriverInput> : AbstructDriver, IDriver<DriverInput>
+{
+    public abstract void GoTo(DriverInput destination);
+}
+public abstract class AbstructDriver : MonoBehaviour, IDriver, IControllebleSpeed, IControllebleMaxSpeed
 {
     public Transform ship;
-    public Transform Ship => ship;
+    public Transform Ship { get => ship; }
 
-    public int speed = 0;
-    public int Speed => speed;
-    public int maxSpeed = int.MaxValue;
-    public int MaxSpeed => maxSpeed;
+    protected int speed = 0;
+    public int Speed { get => speed; set => speed = value; }
+    protected int maxSpeed = int.MaxValue;
+    public int MaxSpeed { get => maxSpeed; set => maxSpeed = value; }
     // Start is called before the first frame update
     protected virtual void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        
+
     }
-    public abstract void GoTo(DriverInput destination);
 }

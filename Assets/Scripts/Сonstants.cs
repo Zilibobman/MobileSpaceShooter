@@ -22,6 +22,7 @@ public enum ConflictSides
 }
 public class Constants// : MonoBehaviour
 {
+    public const int CollisionDamage = 1;
     public const int IndexOfSpecificationsInDataBase = 2;
     public static IEnumerable<Specifications> AllSpecifications
     {

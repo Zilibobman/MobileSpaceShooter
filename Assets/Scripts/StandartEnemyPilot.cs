@@ -58,6 +58,8 @@ public class StandartEnemyPilot : AbstructPilot<Vector2>, IPilotByTrajectory<Vec
 
     Vector3[] Smoothing(Vector3[] path_Positions)
     {
+        if (path_Positions.Length < 2)
+            return path_Positions;
         Vector3[] new_Path_Positions = new Vector3[(path_Positions.Length - 2) * 2 + 2];
         new_Path_Positions[0] = path_Positions[0];
         new_Path_Positions[new_Path_Positions.Length - 1] = path_Positions[path_Positions.Length - 1];
