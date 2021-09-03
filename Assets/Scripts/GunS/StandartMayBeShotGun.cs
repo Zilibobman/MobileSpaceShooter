@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 
-public class StandartMayBeShotGun : AbstractGun, IMayBeShotGun, IAutoGun
+public class StandartMayBeShotGun : AbstractGun, IMayBeShotAutoGun
 {
     protected float timer_Shot;
     public int shot_Chance;

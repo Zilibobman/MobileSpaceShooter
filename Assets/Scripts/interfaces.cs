@@ -37,7 +37,7 @@ public interface IDamager
 #region Speed Mooving and Driver
 public interface IHaveSpeed
 {
-    public int Speed { get; }
+    public float Speed { get; }
 }
 public interface IHaveMaxSpeed
 {
@@ -45,7 +45,7 @@ public interface IHaveMaxSpeed
 }
 public interface IControllebleSpeed : IHaveSpeed
 {
-    public new int Speed { get; set; }
+    public new float Speed { get; set; }
 }
 public interface IControllebleMaxSpeed : IHaveMaxSpeed
 {
@@ -102,7 +102,7 @@ public interface IGun
     public TypesOfGun TypeOfGun { get; }
     public IMakeAShot Shoter { get; set; }
     public List<IBulletModifyer> Modifiers { get; set; }
-    public ParticleSystem Particle{get;set;}
+    public ParticleSystem Particle{get; set;}
 }
 public interface IAutoGun : IGun
 {
@@ -112,6 +112,13 @@ public interface IMayBeShotGun : IGun
 {
     public int Shot_Chance { get; set; }
 }
+public interface IShotInTimeGun : IGun
+{
+    public float Shot_Time_Start { get; set; }
+    public float Shot_Time_End { get; set; }
+}
+public interface IMayBeShotInTimeGun: IMayBeShotGun, IShotInTimeGun {}
+public interface IMayBeShotAutoGun : IMayBeShotGun, IAutoGun {}
 public interface IBulletModifyer
 {
     public void Modify(AbstructBullet bullet);
@@ -122,15 +129,32 @@ public interface IMakeAShot
 }
 #endregion
 
-#region Ships
-public interface IPilot<DriverInput>
+#region Pilots
+public interface IPilot
 {
-    public IDriver<DriverInput> Driver { get; }
+    public IDriver Driver { get; }
 }
-public interface IPilotByTrajectory<DriverInput, TrajectoryType> : IPilot<DriverInput>
+public interface ICanChangeDriver<DriverInput>
+{
+    public void ChangeDriver(IDriver<DriverInput> newDriver);
+}
+public interface IPilot<DriverInput> : IPilot, ICanChangeDriver<DriverInput>
+{
+
+}
+public interface IPilotByTrajectory : IPilot
+{
+    public delegate void EventEndingTrajectory(GameObject sender, bool is_return);
+    public bool Is_return { get; set; }
+    public event EventEndingTrajectory IEndTrajectory;
+}
+public interface IPilotByTrajectory<TrajectoryType> : IPilotByTrajectory
 {
     public TrajectoryType Trajectory { get; set; }
 }
+#endregion
+
+#region Ships
 public interface IShip : IHaveHP, IHaveMaxHP, IHaveConflictSideAndDamageble
 {
     public IShield Shield {get;}
@@ -165,3 +189,16 @@ public interface IParticipant : IHaveShip
 
 }
 #endregion
+
+public interface IEnemyWave
+{
+    public IEnumerator CreateEnemyWave();
+}
+public interface IReward
+{
+    public int Reward { get; }
+}
+public interface IShipSettingsChanger
+{
+    public void ChangeSettinge(AbstructShip Ship);
+}

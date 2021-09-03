@@ -8,11 +8,12 @@ public class Player : AbstructParticipant
 {
     public static Player instanse = null;
 
-    private void Awake()
+    protected override void Awake()
     {
         if (instanse == null)
             instanse = this;
         else
             Destroy(gameObject);
+        base.Awake();
     }
 }

@@ -14,6 +14,6 @@ public class SingleShot : MonoBehaviour, IMakeAShot
     }
     public void MakeAShot(GameObject Bullet)
     {
-        Instantiate(Bullet, gameObject.transform.position, gameObject.transform.rotation /*Quaternion.Euler(Vector3.zero)*/).SetActive(true);
+        Instantiate(Bullet, transform.position, Quaternion.identity /*Quaternion.Euler(Vector3.zero)*/).SetActive(true);
     }
 }

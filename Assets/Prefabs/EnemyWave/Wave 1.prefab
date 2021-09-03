@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5176070639474923116}
-  - component: {fileID: 1914685474904761641}
+  - component: {fileID: 2687835579882795070}
   m_Layer: 0
   m_Name: Wave 1
   m_TagString: Untagged
@@ -126,7 +126,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1914685474904761641
+--- !u!114 &2687835579882795070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,26 +135,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 5821920481683595842}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e66e1a0d5b064b84080cc6406e7fe7bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9aa4dc0dc5216b14e9dc07d8a863b9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shooting_Settings:
-    shot_Chance: 0
-    shot_Time_Min: 1
-    shot_Time_Max: 3
   obj_Enemy: {fileID: 2236735597117646237, guid: 1daa9bb9ebb445b48968487b4e310dca, type: 3}
   count_in_Wave: 10
-  speed_Enemy: 4
   time_Spawn: 0.5
-  path_Points:
+  Trajectory:
   - {fileID: 3444239412379924610}
   - {fileID: 7877311650429299253}
   - {fileID: 5261666814260239040}
   - {fileID: 1189268773797023276}
   - {fileID: 6411659156736687253}
-  is_return: 0
-  is_Test_Wave: 0
-  enemy_Component_Script: {fileID: 0}
+  Is_return: 0
 --- !u!1 &6795904722141094412
 GameObject:
   m_ObjectHideFlags: 0

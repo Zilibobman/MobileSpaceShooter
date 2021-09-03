@@ -6,8 +6,8 @@ public abstract class AbstructBullet : MonoBehaviour, IBullet, IControllebleSpee
 {
     protected int damage;
     public int Damage { get => damage; set => damage = value; }
-    protected int speed;
-    public int Speed { get => speed; set => speed = value; }
+    protected float speed;
+    public float Speed { get => speed; set => speed = value; }
     public abstract ConflictSides ConflictSide { get; }
 
     public virtual void Hurt(IDamagable victim)
@@ -21,7 +21,7 @@ public abstract class AbstructBullet : MonoBehaviour, IBullet, IControllebleSpee
     }
     protected virtual void mooving()
     {
-        transform.Translate(transform.forward * speed * Time.deltaTime);
+        transform.Translate(transform.up * speed * Time.deltaTime);
     }
 
     // Start is called before the first frame update

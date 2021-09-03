@@ -9,10 +9,14 @@ public abstract class AbstructParticipant : MonoBehaviour, IHaveShip
     public AbstructShip ship;
     public IShip Ship { get => ship; }
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         ship = obj_Ship.GetComponent<AbstructShip>();
         ship.ShipWasDestroy += ifShipDestroy;
+    }
+    protected virtual void Start()
+    {
+
     }
 
     // Update is called once per frame
