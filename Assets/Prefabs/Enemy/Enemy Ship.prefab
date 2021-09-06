@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1238367517289258667}
-  - component: {fileID: 2341652673861427888}
   - component: {fileID: 370505641392672816}
   - component: {fileID: 2756275021333987025}
-  - component: {fileID: 305090697788451215}
+  - component: {fileID: 1994770738528315820}
   m_Layer: 0
   m_Name: Enemy Ship
   m_TagString: Enemy
@@ -37,30 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2341652673861427888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1238367517289258664}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a39a8eb3e98836440bf416df7f65c571, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  obj_Driver: {fileID: 1875317508475612251}
-  driver: {fileID: 6457547583491795573}
-  obj_Shield: {fileID: 1238367517631166811}
-  shield: {fileID: 0}
-  currentHP: 0
-  maxHP: 0
-  conflictSide: 0
-  centralGunSlot: {fileID: 5081535395932250568}
-  sideGunsSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  rageOfFire: 0
 --- !u!50 &370505641392672816
 Rigidbody2D:
   serializedVersion: 4
@@ -98,7 +73,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.58
---- !u!114 &305090697788451215
+--- !u!114 &1994770738528315820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,11 +82,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1238367517289258664}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c563b233d6fc1541abe8e3c8b0e6fe0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8633209ff442c594c88604718cc233cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trajectory: []
-  is_return: 1
+  obj_Driver: {fileID: 1875317508475612251}
+  driver: {fileID: 0}
+  obj_Shield: {fileID: 1238367517631166811}
+  shield: {fileID: 0}
 --- !u!1 &1238367517631166811
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +100,7 @@ GameObject:
   - component: {fileID: 1238367517631166812}
   - component: {fileID: 1238367517631166813}
   - component: {fileID: 1753287862379749507}
-  - component: {fileID: 8590895600909877897}
+  - component: {fileID: 7105933424640784298}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Shield
@@ -212,7 +189,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.66
---- !u!114 &8590895600909877897
+--- !u!114 &7105933424640784298
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -221,11 +198,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1238367517631166811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f642014aa41fd1541bf04a2cf01083ce, type: 3}
+  m_Script: {fileID: 11500000, guid: ba4ba3e73d7cc5e469e0620388362925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentHP: 0
   maxHP: 0
+  conflictSide: 0
 --- !u!114 &1353271202960235468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -293,8 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 1238367517289258667}
-  speed: 3
-  maxSpeed: 2147483647
 --- !u!1 &5081535395932250568
 GameObject:
   m_ObjectHideFlags: 0

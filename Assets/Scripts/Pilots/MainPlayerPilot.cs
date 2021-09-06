@@ -16,9 +16,13 @@ public class Borders
     public float minX, maxX, minY, maxY;
 
 }
-public class MainPlayerPilot : AbstructPilot<Vector2>
+public class MainPlayerPilot : AbstructPilot
 {
     public Borders borders;
+    private IDriver<Vector2> driver;
+
+    public override IDriver Driver => driver;
+
     protected override void Start()
     {
         base.Start();
@@ -42,6 +46,11 @@ public class MainPlayerPilot : AbstructPilot<Vector2>
         borders.minY = Camera.main.ViewportToWorldPoint(Vector2.zero).y + borders.minY_Offset;
         borders.maxX = Camera.main.ViewportToWorldPoint(Vector2.right).x - borders.maxX_Offset;
         borders.maxY = Camera.main.ViewportToWorldPoint(Vector2.up).y - borders.maxY_Offset;
+    }
+
+    public override void UpdateDriver()
+    {
+        driver = gameObject.GetComponent<IShip>().Driver as IDriver<Vector2>;
     }
 }
 

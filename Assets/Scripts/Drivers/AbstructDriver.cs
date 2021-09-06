@@ -10,7 +10,7 @@ public abstract class AbstructDriver : MonoBehaviour, IDriver, IControllebleSpee
 {
     public Transform ship;
     public Transform Ship { get => ship; }
-
+    [SerializeField]
     protected float speed = 0;
     public float Speed { get => speed; set => speed = value; }
     protected int maxSpeed = int.MaxValue;

@@ -130,17 +130,13 @@ public interface IMakeAShot
 #endregion
 
 #region Pilots
-public interface IPilot
+public interface ICanUpdateDriver
+{
+    public void UpdateDriver();
+}
+public interface IPilot : ICanUpdateDriver
 {
     public IDriver Driver { get; }
-}
-public interface ICanChangeDriver<DriverInput>
-{
-    public void ChangeDriver(IDriver<DriverInput> newDriver);
-}
-public interface IPilot<DriverInput> : IPilot, ICanChangeDriver<DriverInput>
-{
-
 }
 public interface IPilotByTrajectory : IPilot
 {

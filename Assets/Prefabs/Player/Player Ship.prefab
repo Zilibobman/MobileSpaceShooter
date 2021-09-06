@@ -81,9 +81,6 @@ MonoBehaviour:
   driver: {fileID: 6457547583491795573}
   obj_Shield: {fileID: 1238367517631166811}
   shield: {fileID: 0}
-  currentHP: 0
-  maxHP: 0
-  conflictSide: 1
   centralGunSlot: {fileID: 5081535395932250568}
   sideGunsSlots:
   - {fileID: 5787763477381688340}
@@ -243,8 +240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f642014aa41fd1541bf04a2cf01083ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHP: 0
-  maxHP: 0
 --- !u!1 &1238367517662968824
 GameObject:
   m_ObjectHideFlags: 0
@@ -5100,7 +5095,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 1238367517289258667}
   speed: 0
-  maxSpeed: 2147483647
 --- !u!1 &4945214547080567522
 GameObject:
   m_ObjectHideFlags: 0
@@ -5382,11 +5376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalPosition.x

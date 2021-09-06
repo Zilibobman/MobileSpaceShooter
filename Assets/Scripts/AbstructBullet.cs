@@ -4,8 +4,10 @@ using UnityEngine;
 
 public abstract class AbstructBullet : MonoBehaviour, IBullet, IControllebleSpeed, IHaveControllableDamage
 {
+    [SerializeField]
     protected int damage;
     public int Damage { get => damage; set => damage = value; }
+    [SerializeField]
     protected float speed;
     public float Speed { get => speed; set => speed = value; }
     public abstract ConflictSides ConflictSide { get; }

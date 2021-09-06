@@ -5,9 +5,21 @@ using UnityEngine;
 public abstract class AbstructWave : MonoBehaviour, IEnemyWave
 {
     public GameObject obj_Enemy;
+    protected GameObject obj_modifiEnemy;
     protected AbstructShip enemyShip;
     public int count_in_Wave;
     public float time_Spawn;
+    protected IEnumerable<IShipSettingsChanger> shipSettings;
+    protected IEnumerable<IShipSettingsChanger> ShipSettings
+    { get
+        {
+            if (shipSettings == null)
+            {
+                shipSettings = gameObject.GetComponents<IShipSettingsChanger>();
+            }
+            return shipSettings;
+        }
+    }
     
     public virtual IEnumerator CreateEnemyWave()
     {
@@ -20,27 +32,33 @@ public abstract class AbstructWave : MonoBehaviour, IEnemyWave
     }
     protected virtual GameObject CreateEnemy()
     {
-        GameObject new_enemy = Instantiate(obj_Enemy, obj_Enemy.transform.position, Quaternion.identity);
-
+        GameObject new_enemy = Instantiate(obj_modifiEnemy, obj_Enemy.transform.position, Quaternion.identity);
+        //GetEnemyComponents(new_enemy);
+        //ModyifyEnemy();
         new_enemy.SetActive(true);
         return new_enemy;
     }
 
+    protected void Awake()
+    {
+        obj_modifiEnemy = Instantiate(obj_Enemy);
+        obj_modifiEnemy.SetActive(false);
+        GetEnemyComponents(obj_modifiEnemy);
+        ModyifyEnemy();
+    }
     // Start is called before the first frame update
     protected void Start()
     {
-        GetEnemysComponents();
-        ModyifyEnemys();
         StartCoroutine(CreateEnemyWave());
     }
 
-    protected virtual void GetEnemysComponents()
+    protected virtual void GetEnemyComponents(GameObject Enemy)
     {
-        enemyShip = obj_Enemy.transform.Find("Ship").GetComponent<AbstructShip>();
+        enemyShip = Enemy.transform.Find("Ship").GetComponent<AbstructShip>();
     }
-    protected virtual void ModyifyEnemys()
+    protected virtual void ModyifyEnemy()
     {
-        foreach(IShipSettingsChanger changer in gameObject.GetComponentsInChildren<IShipSettingsChanger>())
+        foreach(IShipSettingsChanger changer in ShipSettings)
         {
             changer.ChangeSettinge(enemyShip);
         }

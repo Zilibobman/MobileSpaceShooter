@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaveByTransform : WaveByTrjectory<Transform[], Vector3[]>
+public class WaveByTransform : WaveByTrjectory<Transform[], Vector2[]>
 {
     protected override void ModyifyEnemysTrajectory()
     {
@@ -10,15 +10,21 @@ public class WaveByTransform : WaveByTrjectory<Transform[], Vector3[]>
     }
     private void OnDrawGizmos()
     {
-        Vector3[] SmoothTrajectory = NewPositionByPath(Trajectory);
+        Vector2[] SmoothTrajectory = NewPositionByPath(Trajectory);
         for (int i = 0; i < SmoothTrajectory.Length - 1; i++)
         {
             Gizmos.DrawLine(SmoothTrajectory[i], SmoothTrajectory[i + 1]);
         }
     }
-    Vector3[] NewPositionByPath(Transform[] path)
+    protected override GameObject CreateEnemy()
     {
-        Vector3[] SmoothTrajectory = new Vector3[path.Length];
+        GameObject newEnemy = base.CreateEnemy();
+        newEnemy.transform.position = Trajectory[0].position;
+        return newEnemy;
+    }
+    Vector2[] NewPositionByPath(Transform[] path)
+    {
+        Vector2[] SmoothTrajectory = new Vector2[path.Length];
         for (int i = 0; i < path.Length; i++)
         {
             SmoothTrajectory[i] = path[i].position;
@@ -29,11 +35,11 @@ public class WaveByTransform : WaveByTrjectory<Transform[], Vector3[]>
         return SmoothTrajectory;
     }
 
-    Vector3[] Smoothing(Vector3[] path_Positions)
+    Vector2[] Smoothing(Vector2[] path_Positions)
     {
         if (path_Positions.Length < 2)
             return path_Positions;
-        Vector3[] new_Path_Positions = new Vector3[(path_Positions.Length - 2) * 2 + 2];
+        Vector2[] new_Path_Positions = new Vector2[(path_Positions.Length - 2) * 2 + 2];
         new_Path_Positions[0] = path_Positions[0];
         new_Path_Positions[new_Path_Positions.Length - 1] = path_Positions[path_Positions.Length - 1];
 

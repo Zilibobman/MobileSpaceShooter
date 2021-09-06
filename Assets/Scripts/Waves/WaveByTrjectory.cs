@@ -5,16 +5,22 @@ using UnityEngine;
 public abstract class WaveByTrjectory<TrajectoryTypeInInspector, TrajectoryTypeInPilot> : AbstructWave
 {
     public TrajectoryTypeInInspector Trajectory;
-    protected IPilotByTrajectory<TrajectoryTypeInPilot> enemyPilot;
+    public AbstructPilotByTrajectory<TrajectoryTypeInPilot> enemyPilotScript;
+    public IPilotByTrajectory<TrajectoryTypeInPilot> enemyPilot;
     public bool Is_return;
-    protected override void GetEnemysComponents()
+    protected override void GetEnemyComponents(GameObject Enemy)
     {
-        base.GetEnemysComponents();
-        enemyPilot = enemyShip.gameObject.GetComponent<IPilotByTrajectory<TrajectoryTypeInPilot>>();
+        base.GetEnemyComponents(Enemy);
     }
-    protected override void ModyifyEnemys()
+    protected override void ModyifyEnemy()
     {
-        base.ModyifyEnemys();
+        base.ModyifyEnemy();
+        enemyPilot = enemyShip.gameObject.GetComponent<IPilotByTrajectory<TrajectoryTypeInPilot>>();
+        if (enemyPilot == null)
+        {
+            enemyPilot = enemyShip.gameObject.AddComponent(enemyPilotScript.GetType()) as IPilotByTrajectory<TrajectoryTypeInPilot>;
+            enemyPilot.UpdateDriver();
+        }
         enemyPilot.Is_return = Is_return;
         ModyifyEnemysTrajectory();
     }

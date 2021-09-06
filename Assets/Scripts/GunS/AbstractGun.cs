@@ -31,6 +31,7 @@ public abstract class AbstractGun : MonoBehaviour, IGun
         }
         obj_ModifiBullet = Instantiate(obj_Bullet);
         obj_ModifiBullet.SetActive(false);
+        obj_ModifiBullet.transform.SetParent(gameObject.transform);
 
         AbstructBullet bullet = obj_ModifiBullet.GetComponent<AbstructBullet>();
         foreach (var modificator in Modifiers)
