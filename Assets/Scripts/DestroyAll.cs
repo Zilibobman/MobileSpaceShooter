@@ -26,11 +26,22 @@ public class DestroyAll : MonoBehaviour
         switch(coll.tag)
         {
             case "Planet":
-                Destroy(coll.gameObject);
+                DestroyRec(coll.gameObject);
                 break;
             case "Bullet":
-                Destroy(coll.gameObject);
+                DestroyRec(coll.gameObject);
                 break;
+        }
+    }
+    private void DestroyRec(GameObject obj)
+    {
+        if(obj.transform.parent != null)
+        {
+            DestroyRec(obj.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(obj);
         }
     }
 }

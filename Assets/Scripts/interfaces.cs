@@ -189,6 +189,7 @@ public interface IParticipant : IHaveShip
 public interface IEnemyWave
 {
     public IEnumerator CreateEnemyWave();
+    public event EventHandler WaveComplit;
 }
 public interface IReward
 {

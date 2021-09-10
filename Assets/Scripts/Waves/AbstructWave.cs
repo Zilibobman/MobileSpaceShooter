@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public abstract class AbstructWave : MonoBehaviour, IEnemyWave
@@ -9,7 +12,11 @@ public abstract class AbstructWave : MonoBehaviour, IEnemyWave
     protected AbstructShip enemyShip;
     public int count_in_Wave;
     public float time_Spawn;
+    protected List<GameObject> AliveEnemys = new List<GameObject>();
     protected IEnumerable<IShipSettingsChanger> shipSettings;
+
+    public event EventHandler WaveComplit;
+
     protected IEnumerable<IShipSettingsChanger> ShipSettings
     { get
         {
@@ -29,12 +36,13 @@ public abstract class AbstructWave : MonoBehaviour, IEnemyWave
 
             yield return new WaitForSeconds(time_Spawn);
         }
+
     }
     protected virtual GameObject CreateEnemy()
     {
         GameObject new_enemy = Instantiate(obj_modifiEnemy, obj_Enemy.transform.position, Quaternion.identity);
-        //GetEnemyComponents(new_enemy);
-        //ModyifyEnemy();
+        AliveEnemys.Add(new_enemy);
+        //new_enemy.transform.Find("Ship").GetComponent<AbstructShip>().ShipWasDestroy += CheckAliveEnemys;
         new_enemy.SetActive(true);
         return new_enemy;
     }
@@ -62,5 +70,15 @@ public abstract class AbstructWave : MonoBehaviour, IEnemyWave
         {
             changer.ChangeSettinge(enemyShip);
         }
+    }
+    protected virtual void CheckAliveEnemys()
+    {
+        foreach(var enemy in AliveEnemys)
+        {
+            if (enemy == null)
+                AliveEnemys.Remove(enemy);
+        }
+        if (AliveEnemys.Count == 0)
+            Destroy(gameObject);
     }
 }

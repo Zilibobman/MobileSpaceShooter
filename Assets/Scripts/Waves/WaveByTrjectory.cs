@@ -29,7 +29,18 @@ public abstract class WaveByTrjectory<TrajectoryTypeInInspector, TrajectoryTypeI
     {
         if (!is_return)
         {
-            Destroy(enemyPilotObj.transform.parent);
+            DestroyRec(enemyPilotObj.transform.parent.gameObject);
+        }
+    }
+    protected void DestroyRec(GameObject obj)
+    {
+        if (obj.transform.parent != null)
+        {
+            DestroyRec(obj.transform.parent.gameObject);
+        }
+        else
+        {
+            Destroy(obj);
         }
     }
     protected override GameObject CreateEnemy()

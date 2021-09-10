@@ -27,20 +27,19 @@ public class StandartEnemyPilot : AbstructPilotByTrajectory<Vector2[]>
     }
     protected override void GoTo()
     {
-        driver.GoTo(trajectory[cur_Pos]);
-        if (Vector2.Distance(transform.position, trajectory[cur_Pos]) < 0.2f)
+        if (cur_Pos < trajectory.Length)
         {
-            cur_Pos++;
-            if (cur_Pos >= trajectory.Length)
+            driver.GoTo(trajectory[cur_Pos]);
+            if (Vector2.Distance(transform.position, trajectory[cur_Pos]) < 0.2f)
             {
-                IEndTrajectory.Invoke(gameObject, is_return);
-                if (is_return)
+                cur_Pos++;
+                if (cur_Pos >= trajectory.Length)
                 {
-                    cur_Pos = 0;
-                }
-                else
-                {
-                    Destroy(gameObject);
+                    IEndTrajectory.Invoke(gameObject, is_return);
+                    if (is_return)
+                    {
+                        cur_Pos = 0;
+                    }
                 }
             }
         }
