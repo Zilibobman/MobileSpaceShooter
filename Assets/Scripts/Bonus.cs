@@ -8,10 +8,7 @@ public class Bonus : MonoBehaviour
     {
         if(collision.tag == "Player_Ship")
         {
-            if(PlayerShooting.instance.cur_Power_Level_Guns < PlayerShooting.instance.max_Power_Level_Guns)
-            {
-                PlayerShooting.instance.cur_Power_Level_Guns++;
-            }
+            collision.GetComponent<MainPlayerShip>().UpRageOfFire();
             Destroy(gameObject);
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AbstructShield : MonoBehaviour, IShield, IControllebleHP, IControllebleMaxHP
+public abstract class AbstructShield : MonoBehaviour, IShield, IControllebleHP, IControllebleMaxHP, IHaveConflictSideAndDamageble
 {
     protected int currentHP;
     public int CurrentHP { get => currentHP; set => currentHP = value; }

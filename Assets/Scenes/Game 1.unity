@@ -1018,7 +1018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1391829466
 Transform:
   m_ObjectHideFlags: 0
@@ -1518,7 +1518,7 @@ PrefabInstance:
       objectReference: {fileID: 104765570}
     - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
       propertyPath: enemyWaves.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
       propertyPath: btnPause.Array.data[0]
@@ -1537,8 +1537,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5821920481683595842, guid: 5b4ed3fb0ccfcde41b9a51d811a238a8, type: 3}
     - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
+      propertyPath: enemyWaves.Array.data[1].wave
+      value: 
+      objectReference: {fileID: 5306417456790864679, guid: cfc1da80f49c2f24d96a2a6a900b21ea, type: 3}
+    - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
       propertyPath: enemyWaves.Array.data[0].timeToStart
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
+      propertyPath: enemyWaves.Array.data[1].timeToStart
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
+      propertyPath: enemyWaves.Array.data[0].is_Last_Wave
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7779871780488013988, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}
+      propertyPath: enemyWaves.Array.data[1].is_Last_Wave
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385ace4e5b78a724aadb7deb14394cae, type: 3}

@@ -1,5 +1,26 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!50 &4263809354857790049
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6865771976103055793}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 0.0001
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6865771976445619224
 GameObject:
   m_ObjectHideFlags: 0
@@ -44,8 +65,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7377db80d1f1245983bd4c39a5c536, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj_Shield: {fileID: 6865771976103055793}
   obj_Ship: {fileID: 6865771976444966466}
+  ship: {fileID: 0}
 --- !u!1001 &5649642099046213866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +130,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1238367517631166811, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1476245041053432874, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -124,6 +149,22 @@ PrefabInstance:
     - target: {fileID: 1756838952151638391, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.323
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355861456374702234, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4355861456374702234, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334615812552850397, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334615812552850397, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8040860274528630612, guid: 7bf80be3238cf5344a55d0af824dae0c, type: 3}
       propertyPath: m_RootOrder

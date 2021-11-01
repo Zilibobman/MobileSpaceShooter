@@ -28,8 +28,8 @@ public class PlanetsAndBonus : MonoBehaviour
             yield return new WaitForSeconds(time_Bonus_Spawn);
             Instantiate(
                 obj_Bonus,
-                new Vector2(Random.Range(PlayerMoving.instance.borders.minX, PlayerMoving.instance.borders.maxX),
-                            PlayerMoving.instance.borders.maxY * 1.5f),
+                new Vector2(Random.Range(MainPlayerPilot.instance.borders.minX, MainPlayerPilot.instance.borders.maxX),
+                            MainPlayerPilot.instance.borders.maxY * 1.5f),
                 Quaternion.identity);
 
         }
@@ -45,8 +45,8 @@ public class PlanetsAndBonus : MonoBehaviour
         {
             int randomIndex = Random.Range(0, planetList.Count);
             GameObject newPlanet = Instantiate(planetList[randomIndex],
-                new Vector2(Random.Range(PlayerMoving.instance.borders.minX, PlayerMoving.instance.borders.maxX),
-                PlayerMoving.instance.borders.maxY * 2f),
+                new Vector2(Random.Range(MainPlayerPilot.instance.borders.minX, MainPlayerPilot.instance.borders.maxX),
+                MainPlayerPilot.instance.borders.maxY * 2f),
                 Quaternion.Euler(0, 0, Random.Range(-25, 25))
                 );
             planetList.RemoveAt(randomIndex);

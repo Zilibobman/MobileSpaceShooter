@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 5176070639474923116}
   - component: {fileID: 2687835579882795070}
   - component: {fileID: 5236969633159763817}
+  - component: {fileID: 7705222875260561124}
   m_Layer: 0
   m_Name: Wave 1
   m_TagString: Untagged
@@ -195,6 +196,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 5
+--- !u!114 &7705222875260561124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5821920481683595842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2434bdec395fbde42b137a179279aa59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shot_Chance: 11
+  shot_Time_Min: 1
+  shot_Time_Max: 3
 --- !u!1 &6795904722141094412
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,11 +20,15 @@ public class MainPlayerPilot : AbstructPilot
 {
     public Borders borders;
     private IDriver<Vector2> driver;
-
+    public static MainPlayerPilot instance;
     public override IDriver Driver => driver;
 
     protected override void Start()
     {
+        if (instance == null)
+            instance = this;
+        else
+            GameObject.Destroy(this.gameObject);
         base.Start();
         ResizeBorders();
     }

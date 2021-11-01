@@ -13,10 +13,10 @@ public abstract class AbstructShip : MonoBehaviour, IShip, IControllebleHP, ICon
     [HideInInspector]
     public AbstructShield shield;
     public IShield Shield { get => shield; }
-    protected int currentHP = 0;
+    public int currentHP = 0;
     public int CurrentHP { get => currentHP; set => currentHP = value; }
 
-    protected int maxHP = 0;
+    public int maxHP = 0;
     public int MaxHP { get => maxHP; set => maxHP = value; }
     public abstract ConflictSides ConflictSide { get; }
 

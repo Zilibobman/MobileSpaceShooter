@@ -89,6 +89,8 @@ MonoBehaviour:
   driver: {fileID: 0}
   obj_Shield: {fileID: 1238367517631166811}
   shield: {fileID: 0}
+  currentHP: 0
+  maxHP: 0
 --- !u!1 &1238367517631166811
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ship: {fileID: 1238367517289258667}
+  speed: 0
 --- !u!1 &5081535395932250568
 GameObject:
   m_ObjectHideFlags: 0
@@ -416,11 +419,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3807629498048733261, guid: 37d8b4cdcf2264e4d935a14aa2490614, type: 3}
       propertyPath: m_LocalPosition.x
